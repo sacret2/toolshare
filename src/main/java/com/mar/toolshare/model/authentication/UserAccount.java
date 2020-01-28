@@ -1,4 +1,4 @@
-package com.mar.toolshare.model.security;
+package com.mar.toolshare.model.authentication;
 
 import com.mar.toolshare.model.User;
 

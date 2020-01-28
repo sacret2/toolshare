@@ -1,10 +1,9 @@
 package com.mar.toolshare.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mar.toolshare.model.security.UserAccount;
+import com.mar.toolshare.model.authentication.UserAccount;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
