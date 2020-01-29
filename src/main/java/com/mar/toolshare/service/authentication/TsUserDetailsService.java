@@ -1,8 +1,8 @@
 package com.mar.toolshare.service.authentication;
 
 import com.mar.toolshare.databases.dao.UserAccountRepository;
-import com.mar.toolshare.model.authentication.TsUserDetails;
-import com.mar.toolshare.model.authentication.UserAccount;
+import com.mar.toolshare.model.security.authentication.TsUserDetails;
+import com.mar.toolshare.model.entities.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

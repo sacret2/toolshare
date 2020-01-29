@@ -1,22 +1,21 @@
-package com.mar.toolshare.model;
+package com.mar.toolshare.model.entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Entity
-public class Responsibility {
+public class Rental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long respId;
+    private long rentalId;
 
     @NotNull
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST},
             fetch = FetchType.LAZY)
     @JoinColumn( name = "user_id")
-    private User user;
+    private UserAccount userAccount;
 
     @NotNull
     @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST},
@@ -27,33 +26,30 @@ public class Responsibility {
     @NotNull
     private LocalDateTime start;
 
-    private LocalDateTime end;
-
-    public Responsibility() {
+    public Rental() {
 
     }
 
-    public Responsibility(@NotNull User user, @NotNull Item item, @NotNull LocalDateTime start, LocalDateTime end) {
-        this.user = user;
+    public Rental(@NotNull UserAccount userAccount, @NotNull Item item, @NotNull LocalDateTime start) {
+        this.userAccount = userAccount;
         this.item = item;
         this.start = start;
-        this.end = end;
     }
 
-    public long getRespId() {
-        return respId;
+    public long getRentalId() {
+        return rentalId;
     }
 
-    public void setRespId(long respId) {
-        this.respId = respId;
+    public void setRentalId(long rentalId) {
+        this.rentalId = rentalId;
     }
 
-    public User getUser() {
-        return user;
+    public UserAccount getUserAccount() {
+        return userAccount;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
     }
 
     public Item getItem() {
@@ -72,11 +68,4 @@ public class Responsibility {
         this.start = start;
     }
 
-    public LocalDateTime getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
-    }
 }

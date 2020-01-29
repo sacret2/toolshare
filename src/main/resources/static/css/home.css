@@ -1,0 +1,21 @@
+.login_panel{
+    position: absolute;
+    right: 10px;
+}
+.visible-item {
+    display: flex;
+}
+.hidden-item{
+    display: none;
+}
+.container{
+    background-color: #A8D0E6;
+    max-width: 100% !important;
+    padding: 3%;
+}
+.login_form{
+    background-color: cornflowerblue;
+    max-width: 90%;
+    display: table;
+    margin: auto;
+}

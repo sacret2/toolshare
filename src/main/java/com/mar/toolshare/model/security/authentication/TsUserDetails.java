@@ -1,5 +1,6 @@
-package com.mar.toolshare.model.authentication;
+package com.mar.toolshare.model.security.authentication;
 
+import com.mar.toolshare.model.entities.UserAccount;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -25,7 +26,6 @@ public class TsUserDetails implements UserDetails {
         this.authorities = Arrays.stream(userAccount.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
-        System.out.println("user details for "+userName);
     }
 
     @Override

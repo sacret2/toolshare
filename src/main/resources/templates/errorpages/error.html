@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="layouts :: header"/>
+<head th:replace="errorpages/errorLayout :: erHeader"/>
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<br/>
+<br/>
+<div class="errorContainer">
+    <div class="notfound-404">
+        <img class="img" th:src="@{/img/unknownError.png}"/>
+        <div style="margin:50px;">
+            <h1>Unknown error</h1>
+            <br/>
+            <p>If it persists, please contact the system administrator</p>
+            <a th:href="@{/}">Go To Homepage</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"/>
+
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<br>
+<div class="container">
+    <h4>Past Rentals</h4>
+    <a th:href="@{/user/scan}" class="btn btn-primary btn-sm mb-3">
+        Scan to rent a new item
+    </a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Tool id</th>
+            <th>Tool name</th>
+            <th>From</th>
+            <th>Until</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rental : ${rentals}" >
+            <td th:text="${rental.item}"/>
+            <td th:text="${rental.item}"/>
+            <td th:text="${rental.getStart()}"/>
+            <td th:text="${rental.getEnd()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -1,11 +1,10 @@
-package com.mar.toolshare.model;
+package com.mar.toolshare.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -26,17 +25,17 @@ public class Item {
     private String description;
 
     @OneToOne
-    @JoinColumn(name = "resp_id")
-    private Responsibility currentResponsibility;
+    @JoinColumn(name = "rental_id")
+    private Rental currentRental;
 
     @OneToMany (mappedBy = "item")
     @JsonIgnore
-    List<Responsibility> responsibilities;
+    List<Rental> rentals;
 
     public Item(){
     }
 
-    public Item(@NotNull @Size(min = 1, max = 300) String name, @NotNull int qr, String description, User user) {
+    public Item(@NotNull @Size(min = 1, max = 300) String name, @NotNull int qr, String description) {
         this.name = name;
         this.qr = qr;
         this.description = description;

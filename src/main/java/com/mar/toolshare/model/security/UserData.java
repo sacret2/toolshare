@@ -1,36 +1,21 @@
-package com.mar.toolshare.model.authentication;
+package com.mar.toolshare.model.security;
 
-import com.mar.toolshare.model.User;
 
-import javax.persistence.*;
-
-@Entity
-@SequenceGenerator(name="user_account_seq", initialValue=1, allocationSize=1)
-public class UserAccount {
-
-    @Id
-    @Column(name ="user_id")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_account_seq")
+public class UserData {
     private long userId;
-
-    @Column(name = "username")
     private String userName;
-
     private String email;
-    private String password;
     private boolean enabled = true;
     private String roles = "ROLE_USER";
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    User user;
-
-    public UserAccount(){
-
+    public UserData(long userId, String userName, String email, String roles, boolean enabled) {
+        this.userName = userName;
+        this.email = email;
+        this.enabled = enabled;
+        this.roles = roles;
     }
 
-    public long getUserId() {
-        return userId;
+    public long getUserId() {        return userId;
     }
 
     public void setUserId(long userId) {
@@ -51,14 +36,6 @@ public class UserAccount {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public boolean isEnabled() {

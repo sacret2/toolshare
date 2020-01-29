@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"/>
+
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<br>
+<div class="container">
+    <h4>Scan the qr code</h4>
+    <a th:href="@{/user/scan}" class="btn btn-primary btn-sm mb-3">
+        Scan
+    </a>
+</div>
+</body>
+</html>
