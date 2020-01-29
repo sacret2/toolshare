@@ -15,7 +15,7 @@ public class HomeController extends BaseController{
     @GetMapping("/")
     public String displayHome(Model model) {
         boolean loggedIn = addLoggedInAndUserDataToModel(model);
-
+        model.addAttribute("loggedIn", loggedIn);
         if(loggedIn)
             return "main/home";
         else
