@@ -36,6 +36,16 @@ public class UserAccount {
 
     }
 
+    public UserAccount(String userName, String email, String password, boolean enabled, String roles, List<Rental> rentals, List<PastRental> pastRentals) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.enabled = enabled;
+        this.roles = roles;
+        this.rentals = rentals;
+        this.pastRentals = pastRentals;
+    }
+
     public long getUserId() {
         return userId;
     }

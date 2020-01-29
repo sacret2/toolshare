@@ -6,7 +6,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 
-public interface CurrentRentalsRepository extends PagingAndSortingRepository<Rental, Long> {
+public interface RentalRepository extends PagingAndSortingRepository<Rental, Long> {
 
 
     List<Rental> findAllByUserAccount(UserAccount userAccount);

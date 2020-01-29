@@ -20,8 +20,8 @@
         </thead>
         <tbody>
         <tr th:each="rental : ${rentals}" >
-            <td th:text="${rental.item}"/>
-            <td th:text="${rental.item}"/>
+            <td th:text="${rental.item.getItemId()}"/>
+            <td th:text="${rental.item.getName()}"/>
             <td th:text="${rental.getStart()}"/>
         </tr>
         </tbody>

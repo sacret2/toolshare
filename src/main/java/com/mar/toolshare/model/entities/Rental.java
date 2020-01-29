@@ -12,13 +12,13 @@ public class Rental {
     private long rentalId;
 
     @NotNull
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST},
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY)
     @JoinColumn( name = "user_id")
     private UserAccount userAccount;
 
     @NotNull
-    @ManyToOne(cascade = {CascadeType.DETACH,CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST},
+    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY)
     @JoinColumn( name = "item_id")
     private Item item;
