@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"/>
+
+<nav th:replace="layouts :: navbar"></nav>
+
+<body>
+<div class="container">
+    <br/>
+
+    <form th:action="@{/manager/saveItem}" th:object="${item}" method="POST">
+
+        <input type="text" placeholder="Item name" th:field="*{name}">
+
+        <textarea type="text" placeholder="Enter Project Description" th:field="${item.description}"></textarea>
+
+        <button type="submit">Save item</button>
+
+    </form>
+</div>
+
+</body>
+
+</html>

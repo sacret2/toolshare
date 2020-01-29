@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"/>
+
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<br>
+<div class="container">
+    <h4>Tools</h4>
+    <a th:href="@{/manager/addTool}" class="btn btn-primary btn-sm mb-3">
+        Add a new tool
+    </a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Tool id</th>
+            <th>Tool name</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${items}" >
+            <td th:text="${item.getItemId()}"/>
+            <td th:text="${item.getName()}"/>
+            <td th:text="${item.getDescription()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
