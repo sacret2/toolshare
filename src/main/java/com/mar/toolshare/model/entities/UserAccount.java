@@ -18,6 +18,8 @@ public class UserAccount {
 
     @Column(name = "username")
     private String userName;
+    private String firstName;
+    private String lastName;
 
     private String email;
     private String password;
@@ -36,8 +38,10 @@ public class UserAccount {
 
     }
 
-    public UserAccount(String userName, String email, String password, boolean enabled, String roles, List<Rental> rentals, List<PastRental> pastRentals) {
+    public UserAccount(String userName, String firstName, String lastName, String email, String password, boolean enabled, String roles, List<Rental> rentals, List<PastRental> pastRentals) {
         this.userName = userName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.password = password;
         this.enabled = enabled;
@@ -108,5 +112,21 @@ public class UserAccount {
 
     public void setPastRentals(List<PastRental> pastRentals) {
         this.pastRentals = pastRentals;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }

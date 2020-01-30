@@ -1,6 +1,7 @@
 package com.mar.toolshare.controller;
 
 import com.mar.toolshare.databases.dao.UserAccountRepository;
+
 import com.mar.toolshare.model.security.UserData;
 import com.mar.toolshare.model.security.authentication.TsUserDetails;
 import com.mar.toolshare.model.entities.UserAccount;
@@ -44,8 +45,16 @@ public abstract class BaseController {
         UserAccount loggedInUser = getLoggedInUserAccount();
         if(loggedInUser == null)
             return null;
-        return new UserData(loggedInUser.getUserId(),loggedInUser.getUserName(),loggedInUser.getEmail(), loggedInUser.getRoles(),loggedInUser.isEnabled());
+        return new UserData(loggedInUser.getUserId(),loggedInUser.getUserName(),loggedInUser.getFirstName(),
+                loggedInUser.getLastName(),loggedInUser.getEmail(), loggedInUser.isEnabled(),loggedInUser.getRoles());
 
+    }
+
+    protected UserData convertUserAccountToUserData(UserAccount userAccount){
+        if(userAccount == null)
+            return null;
+        return new UserData(userAccount.getUserId(),userAccount.getUserName(),userAccount.getFirstName(),
+                userAccount.getLastName(), userAccount.getEmail(), userAccount.isEnabled(),userAccount.getRoles());
     }
 
     protected boolean isLoggedIn(Authentication au){
