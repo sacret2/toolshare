@@ -47,15 +47,15 @@ public class ToolshareApplication {
 			itemRepository.saveAll(Arrays.asList(i1,i2,i3,i4,i5));
 
 			String pass = new BCryptPasswordEncoder().encode("a");
-			UserAccount a = new UserAccount("a", "a", "a", "a", pass, true, "ROLE_USER,ROLE_ADMIN", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			UserAccount a = new UserAccount("a", "a", "a", "a", pass, true, "ROLE_ADMIN", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userAccountRepository.save(a);
 
 			String passb = new BCryptPasswordEncoder().encode("b");
-			UserAccount b = new UserAccount("b", "b","b", "b", passb, true, "ROLE_USER,ROLE_MANAGER", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			UserAccount b = new UserAccount("b", "b","b", "b", passb, true, "ROLE_MANAGER", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userAccountRepository.save(b);
 
 			String passc = new BCryptPasswordEncoder().encode("c");
-			UserAccount c = new UserAccount("c", "c", "c", "c", passc, true, "ROLE_USER,ROLE_MANAGER", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			UserAccount c = new UserAccount("c", "c", "c", "c", passc, true, "ROLE_USER", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userAccountRepository.save(c);
 
 			Rental r1 = new Rental(a,i1, LocalDateTime.now());

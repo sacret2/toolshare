@@ -5,7 +5,6 @@ import com.mar.toolshare.databases.dao.ItemRepository;
 import com.mar.toolshare.databases.dao.PastRentalRepository;
 import com.mar.toolshare.databases.dao.RentalRepository;
 import com.mar.toolshare.model.entities.Item;
-import com.mar.toolshare.model.entities.Rental;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/manager")
@@ -31,7 +28,7 @@ public class ManagerController extends BaseController {
     // ===== View
     @GetMapping("")
     public String currentRentsList(Model model){
-        boolean loggedIn = addLoggedInAndUserDataToModel(model);
+        boolean loggedIn = addLoggedInUserDataToModel(model);
         if(!loggedIn)
             return "redirect:/login";
 
@@ -40,7 +37,7 @@ public class ManagerController extends BaseController {
 
     @GetMapping("/items")
     public String pastRentsList(Model model){
-        boolean loggedIn = addLoggedInAndUserDataToModel(model);
+        boolean loggedIn = addLoggedInUserDataToModel(model);
         if(!loggedIn)
             return "redirect:/login";
 
@@ -53,7 +50,7 @@ public class ManagerController extends BaseController {
     // ===== Forms
     @GetMapping("/addItem")  // I guess it will generate QR image to print and stick on the item
     public String qrScanView(Model model){
-        boolean loggedIn = addLoggedInAndUserDataToModel(model);
+        boolean loggedIn = addLoggedInUserDataToModel(model);
         if(!loggedIn)
             return "redirect:/login";
 

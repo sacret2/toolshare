@@ -16,11 +16,20 @@ public abstract class BaseController {
     @Autowired
     UserAccountRepository userAccountRepo;
 
-    protected boolean addLoggedInAndUserDataToModel(Model model){
+    protected boolean addLoggedInUserDataToModel(Model model){
         UserData userData = getLoggedInUserData();
+        if(userData == null)
+            return false;
         boolean loggedIn = userData != null;
-        model.addAttribute("loggedIn", loggedIn);
         model.addAttribute("userData", userData);
+        boolean hasUserRole = userData.getRoles().contains("ROLE_USER");
+        boolean hasManagerRole = userData.getRoles().contains("ROLE_MANAGER");
+        boolean hasAdminRole = userData.getRoles().contains("ROLE_ADMIN");
+        model.addAttribute("loggedIn", loggedIn);
+        model.addAttribute("hasUserRole", hasUserRole);
+        model.addAttribute("hasManagerRole", hasManagerRole);
+        model.addAttribute("hasAdminRole", hasAdminRole);
+
         return loggedIn;
     }
 

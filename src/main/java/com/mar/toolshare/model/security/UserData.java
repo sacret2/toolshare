@@ -12,7 +12,7 @@ public class UserData implements IUserData {
     private boolean enabled = true;
     private String roles = "ROLE_USER";
 
-    public UserData(long userId, String userName, String firstName, String lastName, String email, boolean enabled, String roles) {
+    public UserData(long userId, String userName, String firstName, String lastName, String email, boolean enabled, String roles){
         this.userId = userId;
         this.userName = userName;
         this.firstName = firstName;

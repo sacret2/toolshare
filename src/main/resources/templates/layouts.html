@@ -20,6 +20,41 @@
     <div id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <div class="user_panel" th:classappend="${hasUserRole} ? 'visible-item' : 'hidden-item'" >
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a th:href="@{/user/rentals}" class="nav-link">Current rentals</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a th:href="@{/user/scan}" class="nav-link">Rent a new item</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a th:href="@{/user/pastRentals}" class="nav-link">Past rentals</a>
+                        </li>
+                    </ul>
+                </div>
+                <div  class="manager_panel" th:classappend="${hasManagerRole} ? 'visible-item' : 'hidden-item'">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a th:href="@{/manager/items}" class="nav-link">Items</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a th:href="@{/manager/addItem}" class="nav-link">Add item</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="admin_panel" th:classappend="${hasAdminRole} ? 'visible-item' : 'hidden-item'">
+                    <ul class="navbar-nav">
+                        <li class="nav-item active">
+                            <a th:href="@{/admin/managers}" class="nav-link">Managers</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a th:href="@{/admin/addManager}" class="nav-link">Add manager</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item">
                 <div class="login_panel">
                     <a th:href="@{/register}" class="btn btn-primary btn-sm mb-3" th:classappend="${loggedIn} ? 'hidden-item' : 'visible-item'" >
                         Register

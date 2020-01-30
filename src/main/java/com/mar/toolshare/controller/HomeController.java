@@ -1,6 +1,5 @@
 package com.mar.toolshare.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +13,7 @@ public class HomeController extends BaseController{
 
     @GetMapping("/")
     public String displayHome(Model model) {
-        boolean loggedIn = addLoggedInAndUserDataToModel(model);
+        boolean loggedIn = addLoggedInUserDataToModel(model);
         model.addAttribute("loggedIn", loggedIn);
         if(loggedIn)
             return "main/home";

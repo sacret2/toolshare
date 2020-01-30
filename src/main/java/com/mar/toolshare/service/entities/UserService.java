@@ -3,6 +3,7 @@ package com.mar.toolshare.service.entities;
 import com.mar.toolshare.databases.dao.UserAccountRepository;
 
 import com.mar.toolshare.databases.dto.IUserData;
+import com.mar.toolshare.model.entities.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +15,14 @@ public class UserService {
     UserAccountRepository userAccountRepo;
 
     public List<IUserData> findManagers(){
-        System.out.println("SIZE====== " +userAccountRepo.findAllUserDataManagers().size());
-        for (IUserData u: userAccountRepo.findAllUserDataManagers()
-             ) {
-            System.out.println("first name = " + u.getFirstName());
-        }
         return userAccountRepo.findAllUserDataManagers();
     }
 
     public void deleteById(long userId) {
         userAccountRepo.deleteById(userId);
+    }
+
+    public UserAccount save(UserAccount userAccount){
+        return userAccountRepo.save(userAccount);
     }
 }

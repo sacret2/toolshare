@@ -24,7 +24,7 @@ public class UserAccount {
     private String email;
     private String password;
     private boolean enabled = true;
-    private String roles = "ROLE_USER";
+    private String roles;
 
     @OneToMany (mappedBy = "userAccount")
     @JsonIgnore

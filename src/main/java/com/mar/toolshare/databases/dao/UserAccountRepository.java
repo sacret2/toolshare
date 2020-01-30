@@ -22,4 +22,7 @@ public interface UserAccountRepository extends PagingAndSortingRepository<UserAc
 
     @Override
     void deleteById(Long aLong);
+
+    @Override
+    <S extends UserAccount> S save(S s);
 }

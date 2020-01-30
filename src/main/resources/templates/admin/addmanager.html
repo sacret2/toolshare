@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layouts :: header"/>
+
+<nav th:replace="layouts :: navbar"></nav>
+
 <body>
+<br/>
+
+<div class="container">
+
+    <form th:action="@{/admin/save}" th:object="${manager}" method="POST">
+
+        <input type="text" placeholder="username" th:field="*{userName}">
+        <input type="text" placeholder="first name" th:field="*{firstName}">
+        <input type="text" placeholder="last name" th:field="*{lastName}">
+        <input type="text" placeholder="email" th:field="*{email}">
+        <input type="text" placeholder="password" th:field="*{password}">
+
+        <button type="submit">Create Project</button>
+
+    </form>
+</div>
 
 </body>
+
 </html>
