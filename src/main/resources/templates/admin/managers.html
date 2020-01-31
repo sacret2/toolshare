@@ -22,7 +22,7 @@
             <td th:text="${user.lastName}"/>
             <td th:text="${user.email}"/>
             <td th:text="${user.enabled}"/>
-            <td>
+            <td style="text-align: center;">
                 <a th:href="@{/admin/delete(id =${user.userId})}" class="btn btn-primary"
                    onclick="if(!(confirm('Are you sure you want to delete this manager?'))) return false">
                     Delete

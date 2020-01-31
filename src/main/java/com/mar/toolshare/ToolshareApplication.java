@@ -1,6 +1,7 @@
 package com.mar.toolshare;
 
 import com.mar.toolshare.databases.dao.ItemRepository;
+import com.mar.toolshare.databases.dao.PastRentalRepository;
 import com.mar.toolshare.databases.dao.RentalRepository;
 import com.mar.toolshare.databases.dao.UserAccountRepository;
 import com.mar.toolshare.model.entities.Item;
@@ -26,6 +27,9 @@ public class ToolshareApplication {
 
 	@Autowired
 	RentalRepository rentalRepository;
+
+	@Autowired
+	PastRentalRepository pastRentalRepo;
 
 	@Autowired
 	UserAccountRepository userAccountRepository;
@@ -58,10 +62,13 @@ public class ToolshareApplication {
 			UserAccount c = new UserAccount("c", "c", "c", "c", passc, true, "ROLE_USER", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userAccountRepository.save(c);
 
-			Rental r1 = new Rental(a,i1, LocalDateTime.now());
-			Rental r2 = new Rental(a,i2, LocalDateTime.now().minusDays(1));
-
+			Rental r1 = new Rental(c,i1, LocalDateTime.now());
+			Rental r2 = new Rental(c,i2, LocalDateTime.now().minusDays(1));
 			rentalRepository.saveAll(Arrays.asList(r1,r2));
+
+			PastRental pr1 = new PastRental(c, i3, LocalDateTime.now().minusDays(2), LocalDateTime.now().minusDays(1));
+			PastRental pr2 = new PastRental(c, i3, LocalDateTime.now().minusMinutes(200), LocalDateTime.now().minusDays(100));
+			pastRentalRepo.saveAll(Arrays.asList(pr1,pr2));
         };
     };
 }
