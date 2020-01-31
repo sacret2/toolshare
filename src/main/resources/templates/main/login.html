@@ -9,35 +9,36 @@
 <body>
 <br>
 <div class="container">
-    <div class="login_form">
-        <h1>Login</h1>
-        <br>
-        <form name='f' th:action="@{/login}" method='POST'>
-            <fieldset>
-                <div th:if="${param.error}" class="alert alert-error">
-                    Invalid username and/or password
-                </div>
-                <div th:if="${param.logout}" class="alert alert-success">
-                    You have been logged out.
-                </div>
-                <table>
-                    <tr>
-                        <td>User:</td>
-                        <td><input type='text' name='username' value=''></td>
-                    </tr>
-                    <tr>
-                        <td>Password:</td>
-                        <td><input type='password' name='password' /></td>
-                    </tr>
-                    <tr>
-                        <td><input name="submit" type="submit" value="submit" /></td>
-                    </tr>
-                </table>
-            </fieldset>
-        </form>
-        <a th:href="@{/register}" class="btn btn-primary btn-sm mb-3">
-            Register
-        </a>
+    <div class="centeredContainer col-lg-4 col-lg-offset-4" style="padding: 20px; ">
+        <div  class="login_form">
+            <h3>Login Form</h3>
+            <br>
+            <form name='f' th:action="@{/login}" method='POST' autocomplete="off" role="form" class="centered form-signin needs-validation" novalidate>
+                <fieldset>
+                    <div th:if="${param.error}" class="alert alert-error">
+                        Invalid username and/or password
+                    </div>
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        You have been logged out.
+                    </div>
+                    <div class="form-group">
+                        <div class="">
+                            <input type='text' name='username' value=''  placeholder="User Name" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="">
+                            <input type='password' name='password'  placeholder="Password" class="form-control" required/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="">
+                            <input name="submit" type="submit" value="Log in" class="btn btn-primary btn-sm mb-3"/>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
     </div>
 </div>
 </body>

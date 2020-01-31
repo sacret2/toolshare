@@ -20,4 +20,9 @@ public class HomeController extends BaseController{
         else
             return "redirect:/login";
     }
+
+    @GetMapping("/termsAndConditions")
+    public String displayTerms(Model model) {
+        return "main/termsAndConditions";
+    }
 }

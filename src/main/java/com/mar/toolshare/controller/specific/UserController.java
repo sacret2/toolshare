@@ -33,7 +33,7 @@ public class UserController extends BaseController {
         return "user/rentals";
     }
 
-    @GetMapping("pastrentals")
+    @GetMapping("pastRentals")
     public String pastRentsList(Model model){
         boolean loggedIn = addLoggedInUserDataToModel(model);
         if(!loggedIn)

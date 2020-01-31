@@ -1,3 +1,6 @@
+body{
+    background-color: #ededed;
+}
 .login_panel{
     position: absolute;
     top: 17px;
@@ -11,12 +14,18 @@
 }
 .container{
     background-color: #A8D0E6;
-    max-width: 100% !important;
     padding: 3%;
+    text-align: center;
 }
 .login_form{
-    background-color: cornflowerblue;
-    max-width: 90%;
     display: table;
+    margin: auto;
+}
+.centeredContainer{
+    margin: auto;
+    text-align: center;
+    display: -webkit-box;
+}
+.centered{
     margin: auto;
 }

@@ -10,20 +10,65 @@
 <br/>
 
 <div class="container">
-
-    <form th:action="@{/admin/save}" th:object="${manager}" method="POST">
-
-        <input type="text" placeholder="username" th:field="*{userName}">
-        <input type="text" placeholder="first name" th:field="*{firstName}">
-        <input type="text" placeholder="last name" th:field="*{lastName}">
-        <input type="text" placeholder="email" th:field="*{email}">
-        <input type="text" placeholder="password" th:field="*{password}">
-
-        <button type="submit">Create Project</button>
+    <h4>Add manager</h4>
+    <br>
+    <form th:action="@{/admin/save}" th:object="${manager}" method="POST"
+          class="needs-validation" novalidate>
+        <div class="form-group row">
+            <label for="usernameC" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" placeholder="username" th:field="*{userName}" id="usernameC" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="emailC" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="text" placeholder="email" th:field="*{email}" id="emailC" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="passwordC" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="text" placeholder="password" th:field="*{password}" id="passwordC" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="firstnameC" class="col-sm-2 col-form-label">First name</label>
+            <div class="col-sm-10">
+                <input type="text" placeholder="first name" th:field="*{firstName}" id="firstnameC" class="form-control" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="lastnameC" class="col-sm-2 col-form-label">Last name</label>
+            <div class="col-sm-10">
+                <input type="text" placeholder="last name" th:field="*{lastName}" id="lastnameC" class="form-control" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-sm mb-3">Add manager</button>
 
     </form>
 </div>
 
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+                form.addEventListener('submit', function(event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
 </body>
 
 </html>
