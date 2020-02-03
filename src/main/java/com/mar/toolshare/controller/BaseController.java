@@ -1,5 +1,6 @@
 package com.mar.toolshare.controller;
 
+import com.mar.toolshare.auxiliary.ZXingHelper;
 import com.mar.toolshare.databases.dao.UserAccountRepository;
 
 import com.mar.toolshare.model.security.UserData;
@@ -10,6 +11,11 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
 
 public abstract class BaseController {
 
@@ -18,14 +24,14 @@ public abstract class BaseController {
 
     protected boolean addLoggedInUserDataToModel(Model model){
         UserData userData = getLoggedInUserData();
+        boolean loggedIn = userData != null;
+        model.addAttribute("loggedIn", loggedIn);
         if(userData == null)
             return false;
-        boolean loggedIn = userData != null;
         model.addAttribute("userData", userData);
         boolean hasUserRole = userData.getRoles().contains("ROLE_USER");
         boolean hasManagerRole = userData.getRoles().contains("ROLE_MANAGER");
         boolean hasAdminRole = userData.getRoles().contains("ROLE_ADMIN");
-        model.addAttribute("loggedIn", loggedIn);
         model.addAttribute("hasUserRole", hasUserRole);
         model.addAttribute("hasManagerRole", hasManagerRole);
         model.addAttribute("hasAdminRole", hasAdminRole);
@@ -75,4 +81,7 @@ public abstract class BaseController {
         return isLoggedIn(au);
     }
     // ===== User data retrieving end
+
+
+
 }

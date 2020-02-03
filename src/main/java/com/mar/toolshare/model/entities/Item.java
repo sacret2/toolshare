@@ -21,7 +21,7 @@ public class Item {
     @NotNull
     private int qr;
 
-    @Column(columnDefinition = "varchar(4000)")
+    @Column(columnDefinition = "varchar(5000)")
     private String description;
 
     @OneToOne

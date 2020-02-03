@@ -21,20 +21,20 @@
     <div id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <div class="user_panel" th:classappend="${hasUserRole} ? 'visible-item' : 'hidden-item'" >
+                <div class="user_panel" th:if="${hasUserRole}" >
                     <ul class="navbar-nav">
                         <li class="nav-item active">
                             <a th:href="@{/user/rentals}" class="nav-link">Current rentals</a>
                         </li>
                         <li class="nav-item active">
-                            <a th:href="@{/user/scan}" class="nav-link">Rent a new item</a>
+                            <a th:href="@{/user/scan}" class="nav-link">Rent an item</a>
                         </li>
                         <li class="nav-item active">
                             <a th:href="@{/user/pastRentals}" class="nav-link">Past rentals</a>
                         </li>
                     </ul>
                 </div>
-                <div  class="manager_panel" th:classappend="${hasManagerRole} ? 'visible-item' : 'hidden-item'">
+                <div  class="manager_panel" th:if="${hasManagerRole}">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
                             <a th:href="@{/manager/items}" class="nav-link">Items</a>
@@ -44,7 +44,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="admin_panel" th:classappend="${hasAdminRole} ? 'visible-item' : 'hidden-item'">
+                <div class="admin_panel" th:if="${hasAdminRole}">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
                             <a th:href="@{/admin/managers}" class="nav-link">Managers</a>
@@ -56,14 +56,15 @@
                 </div>
             </li>
             <li class="nav-item">
-                <div class="login_panel">
-                    <a th:href="@{/register}" class="btn btn-primary btn-sm mb-3" th:classappend="${loggedIn} ? 'hidden-item' : 'visible-item'" >
+                <div class="login_panel" style="display: block ruby;">
+                    <div class="nav-link" th:if="${loggedIn}" th:text="${userData.getFirstName() + ' ' + userData.getLastName() + ' '}" ></div>
+                    <a th:href="@{/register}" class="btn btn-primary btn-sm mb-3" th:if="!${loggedIn}" >
                         Register
                     </a>
-                    <a th:href="@{/login}" class="btn btn-primary btn-sm mb-3" th:classappend="${loggedIn} ? 'hidden-item' : 'visible-item'" >
+                    <a th:href="@{/login}" class="btn btn-primary btn-sm mb-3" th:if="!${loggedIn}" >
                         Login
                     </a>
-                    <a th:href="@{/logout}" class="btn btn-primary btn-sm mb-3" th:classappend="${loggedIn} ? 'visible-item' : 'hidden-item'" >
+                    <a th:href="@{/logout}" class="btn btn-primary btn-sm mb-3" th:if="${loggedIn}" >
                         Logout
                     </a>
                 </div>
