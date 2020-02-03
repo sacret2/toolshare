@@ -5,6 +5,9 @@ public interface IUserData {
     String getUserName();
     String getFirstName();
     String getLastName();
+    String getAddressLine1();
+    String getAddressLine2();
+    String getZipCode();
     String getEmail();
     String getRoles();
     boolean getEnabled();

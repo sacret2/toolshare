@@ -13,11 +13,13 @@ public interface UserAccountRepository extends PagingAndSortingRepository<UserAc
     Optional<UserAccount> findByUserName(String userName);
 
     @Query(nativeQuery = true, value = "SELECT user_Id as userId, username as userName, first_name as firstName,"+
-            " last_name as lastName, email, roles, enabled FROM user_account WHERE user_id = ?1")
+            " last_name as lastName, address_line1 as addressLine1, address_line2 as addressLine2, " +
+            "zip_code as zipCode, email, roles, enabled FROM user_account WHERE user_id = ?1")
     Optional<IUserData> getUserDataByUserId(long userId);
 
     @Query(nativeQuery = true, value = "SELECT user_Id as userId, username as userName, first_name as firstName,"+
-            " last_name as lastName, email, roles, enabled FROM user_account WHERE roles LIKE '%ROLE_MANAGER%'")
+            " last_name as lastName, address_line1 as addressLine1, address_line2 as addressLine2, " +
+            "zip_code as zipCode, email, roles, enabled FROM user_account WHERE roles LIKE '%ROLE_MANAGER%'")
     List<IUserData> findAllUserDataManagers();
 
     @Override

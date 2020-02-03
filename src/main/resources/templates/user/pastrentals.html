@@ -20,8 +20,8 @@
         <tr th:each="prental : ${pastRentals}" >
             <td th:text="${prental.item.getItemId()}"/>
             <td th:text="${prental.item.getName()}"/>
-            <td th:text="${prental.getStart()}"/>
-            <td th:text="${prental.getEnd()}"/>
+            <td th:text="${prental.getFormattedStartDate()}"/>
+            <td th:text="${prental.getFormattedEndDate()}"/>
         </tr>
         </tbody>
     </table>

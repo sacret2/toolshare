@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"/>
+
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<br>
+<div class="container">
+    <h4>Item</h4>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Item id</th>
+            <th>Item name</th>
+            <th>Description</th>
+            <th>Currently rented by</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${item.getItemId()}"/>
+            <td th:text="${item.getName()}"/>
+            <td th:text="${item.getDescription()}"/>
+            <td>
+                <a th:href="@{/manager/user(id=${currentRental.userAccount.userId})}" th:text="${currentRental.userAccount.getUserName()}"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <h4>Past rentals of an item</h4>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Tool id</th>
+            <th>User name</th>
+            <th>From</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rental : ${rentals}" >
+            <td th:text="${rental.item.getItemId()}"/>
+            <td>
+                <a th:href="@{/manager/user(id=${rental.userAccount.getUserId()})}" th:text="${rental.userAccount.getUserName()}"/>
+            </td>
+            <td th:text="${rental.getFormattedStartDate()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

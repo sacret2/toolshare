@@ -3,28 +3,34 @@ package com.mar.toolshare.model.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
+@SequenceGenerator(name="rental_seq", initialValue=1, allocationSize=1)
 public class Rental {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long rentalId;
+    @Column(name ="rental_id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "rental_seq")
+    protected long rentalId;
 
     @NotNull
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY)
     @JoinColumn( name = "user_id")
-    private UserAccount userAccount;
+    protected UserAccount userAccount;
 
     @NotNull
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE},
             fetch = FetchType.LAZY)
     @JoinColumn( name = "item_id")
-    private Item item;
+    protected Item item;
 
     @NotNull
-    private LocalDateTime start;
+    protected LocalDateTime start;
+
+    protected LocalDateTime end;
+
 
     public Rental() {
 
@@ -66,6 +72,24 @@ public class Rental {
 
     public void setStart(LocalDateTime start) {
         this.start = start;
+    }
+
+    public LocalDateTime getEnd() {
+        return end;
+    }
+
+    public void setEnd(LocalDateTime end) {
+        this.end = end;
+    }
+
+    public String getFormattedEndDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return getEnd().format(formatter);
+    }
+
+    public String getFormattedStartDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return getStart().format(formatter);
     }
 
 }

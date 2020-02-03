@@ -3,33 +3,12 @@ package com.mar.toolshare.model.entities;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
-public class PastRental {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long rentalId;
-
-    @NotNull
-    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE},
-            fetch = FetchType.LAZY)
-    @JoinColumn( name = "user_id")
-    private UserAccount userAccount;
-
-    @NotNull
-    @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.MERGE},
-            fetch = FetchType.LAZY)
-    @JoinColumn( name = "item_id")
-    private Item item;
-
-    @NotNull
-    private LocalDateTime start;
-
-    private LocalDateTime end;
+public class PastRental extends Rental{
 
     public PastRental() {
-
     }
 
     public PastRental(@NotNull UserAccount userAccount, @NotNull Item item, @NotNull LocalDateTime start, LocalDateTime end) {
@@ -39,43 +18,8 @@ public class PastRental {
         this.end = end;
     }
 
-    public long getRentalId() {
-        return rentalId;
-    }
-
-    public void setRentalId(long rentalId) {
-        this.rentalId = rentalId;
-    }
-
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
-
-    public Item getItem() {
-        return item;
-    }
-
-    public void setItem(Item item) {
-        this.item = item;
-    }
-
-    public LocalDateTime getStart() {
-        return start;
-    }
-
-    public void setStart(LocalDateTime start) {
-        this.start = start;
-    }
-
-    public LocalDateTime getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
+    public String getFormattedEndDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return getEnd().format(formatter);
     }
 }

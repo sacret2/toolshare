@@ -19,7 +19,7 @@
         <tr th:each="rental : ${rentals}" >
             <td th:text="${rental.item.getItemId()}"/>
             <td th:text="${rental.item.getName()}"/>
-            <td th:text="${rental.getStart()}"/>
+            <td th:text="${rental.getFormattedStartDate()}"/>
         </tr>
         </tbody>
     </table>

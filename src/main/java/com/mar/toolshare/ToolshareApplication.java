@@ -73,21 +73,26 @@ public class ToolshareApplication {
 			itemRepository.saveAll(Arrays.asList(i1,i2,i3,i4,i5));
 
 			String pass = new BCryptPasswordEncoder().encode("a");
-			UserAccount a = new UserAccount("a", "Admin", " ", "a", pass, true, "ROLE_ADMIN", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			UserAccount a = new UserAccount("a", "Admin", " ", "","" ,"","a", pass, true, "ROLE_ADMIN", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userAccountRepository.save(a);
 
 			String passb = new BCryptPasswordEncoder().encode("b");
-			UserAccount b = new UserAccount("b", "Christopher","Faulkner", "ChristopherNFaulkner@gmail.com", passb, true, "ROLE_MANAGER", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			UserAccount b = new UserAccount("b", "Christopher","Faulkner", "4834  Shinn Street","New York","10023", "ChristopherNFaulkner@gmail.com", passb, true, "ROLE_MANAGER", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userAccountRepository.save(b);
 
+			String passbb = new BCryptPasswordEncoder().encode("bb");
+			UserAccount bb = new UserAccount("bb", "Cheri","Mathis","3832  Morningview Lane","New York","10007","CherriMMathis@gmail.com", passbb, true, "ROLE_MANAGER", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			userAccountRepository.save(bb);
+
 			String passc = new BCryptPasswordEncoder().encode("c");
-			UserAccount c = new UserAccount("c", "Kenneth", "Carolina", "KennethCCarolina@dayrep.com ", passc, true, "ROLE_USER", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			UserAccount c = new UserAccount("userc", "Kenneth", "Carolina", "579  Hoffman Avenue", "New York", "10016","KennethCCarolina@dayrep.com ", passc, true, "ROLE_USER", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userAccountRepository.save(c);
 
 			Rental r1 = new Rental(c,i1, LocalDateTime.now());
 			Rental r2 = new Rental(c,i2, LocalDateTime.now().minusDays(1));
 			Rental r3 = new Rental(c,i5, LocalDateTime.now().minusDays(4));
-			rentalRepository.saveAll(Arrays.asList(r1,r2,r3));
+			Rental r4 = new Rental(c,i3, LocalDateTime.now().minusDays(2));
+			rentalRepository.saveAll(Arrays.asList(r1,r2,r3,r4));
 
 			PastRental pr1 = new PastRental(c, i3, LocalDateTime.now().minusDays(2), LocalDateTime.now().minusDays(1));
 			PastRental pr2 = new PastRental(c, i4, LocalDateTime.now().minusMinutes(200), LocalDateTime.now().minusDays(100));

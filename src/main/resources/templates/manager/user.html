@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header"/>
+
+<body>
+<nav th:replace="layouts :: navbar"></nav>
+<br>
+<div class="container">
+    <h4>User Data</h4>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>User id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Address Line 1</th>
+            <th>ZIP code</th>
+            <th>Address Line 2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${user.userId}"/>
+            <td th:text="${user.firstName}"/>
+            <td th:text="${user.lastName}"/>
+            <td th:text="${user.addressLine1}"/>
+            <td th:text="${user.zipCode}"/>
+            <td th:text="${user.addressLine2}"/>
+        </tr>
+        </tbody>
+    </table>
+    <h4>Current Rentals</h4>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Tool id</th>
+            <th>Tool name</th>
+            <th>From</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="rental : ${rentals}" >
+            <td>
+                <a th:href="@{/manager/item(id=${rental.item.getItemId()})}" th:text="${rental.item.getItemId()}"/>
+            </td>
+            <td th:text="${rental.item.getName()}"/>
+            <td th:text="${rental.getFormattedStartDate()}"/>
+        </tr>
+        </tbody>
+    </table>
+    <h4>Past Rentals</h4>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>Tool id</th>
+            <th>Tool name</th>
+            <th>From</th>
+            <th>Until</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="prental : ${pastRentals}" >
+            <td>
+                <a th:href="@{/manager/item(id=${prental.item.getItemId()})}" th:text="${prental.item.getItemId()}"/>
+            </td>
+            <td th:text="${prental.item.getName()}"/>
+            <td th:text="${prental.getFormattedStartDate()}"/>
+            <td th:text="${prental.getFormattedEndDate()}"/>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

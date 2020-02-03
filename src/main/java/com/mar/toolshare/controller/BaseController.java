@@ -61,7 +61,8 @@ public abstract class BaseController {
         if(loggedInUser == null)
             return null;
         return new UserData(loggedInUser.getUserId(),loggedInUser.getUserName(),loggedInUser.getFirstName(),
-                loggedInUser.getLastName(),loggedInUser.getEmail(), loggedInUser.isEnabled(),loggedInUser.getRoles());
+                loggedInUser.getLastName(),loggedInUser.getAddressLine1(),loggedInUser.getAddressLine2(),
+                loggedInUser.getZipCode(), loggedInUser.getEmail(), loggedInUser.isEnabled(),loggedInUser.getRoles());
 
     }
 
@@ -69,7 +70,8 @@ public abstract class BaseController {
         if(userAccount == null)
             return null;
         return new UserData(userAccount.getUserId(),userAccount.getUserName(),userAccount.getFirstName(),
-                userAccount.getLastName(), userAccount.getEmail(), userAccount.isEnabled(),userAccount.getRoles());
+                userAccount.getLastName(),userAccount.getAddressLine1(),userAccount.getAddressLine2(),
+                userAccount.getZipCode(), userAccount.getEmail(), userAccount.isEnabled(),userAccount.getRoles());
     }
 
     protected boolean isLoggedIn(Authentication au){

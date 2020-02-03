@@ -1,6 +1,7 @@
 package com.mar.toolshare.service.authentication;
 
 import com.mar.toolshare.databases.dao.UserAccountRepository;
+import com.mar.toolshare.databases.dto.IUserData;
 import com.mar.toolshare.model.security.authentication.TsUserDetails;
 import com.mar.toolshare.model.entities.UserAccount;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,12 @@ public class TsUserDetailsService implements UserDetailsService {
 
     @Autowired
     UserAccountRepository userAccountRepository;
+
+
+    public Optional<IUserData> getUserDataByUserId(long userId){
+        return userAccountRepository.getUserDataByUserId(userId);
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
