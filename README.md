@@ -8,6 +8,26 @@ Returning the tool: tool is returned when another user scans a tool currently re
 
 Administrator's role is to add or delete manager accounts.
 
+## beta version available under:
+http://ec2-18-195-169-134.eu-central-1.compute.amazonaws.com:8081/  
+
+###    log in as:
+administrator:
+```
+username: a
+password: a
+```  
+manager:
+```
+username: b
+password: b
+```  
+user:
+```
+username: userc
+password: c
+```  
+
 ## administrator views
 <img src="src\main\resources\static\img\readme\admin_home.png"> 
 <img src="src\main\resources\static\img\readme\admin_managers.png"> 

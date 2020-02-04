@@ -50,7 +50,7 @@ public class AdminController extends BaseController {
 
         model.addAttribute("manager", manager);
 
-        return "admin/addManager";
+        return "admin/addmanager";
     }
     // === forms end
 
