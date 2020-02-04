@@ -1,14 +1,13 @@
 package com.mar.toolshare;
 
-import com.mar.toolshare.databases.dao.ItemRepository;
-import com.mar.toolshare.databases.dao.PastRentalRepository;
-import com.mar.toolshare.databases.dao.RentalRepository;
-import com.mar.toolshare.databases.dao.UserAccountRepository;
 import com.mar.toolshare.model.entities.Item;
 import com.mar.toolshare.model.entities.PastRental;
 import com.mar.toolshare.model.entities.Rental;
 import com.mar.toolshare.model.entities.UserAccount;
-import com.mar.toolshare.service.entities.*;
+import com.mar.toolshare.service.entities.impl.ItemServiceImpl;
+import com.mar.toolshare.service.entities.impl.PastRentalServiceImpl;
+import com.mar.toolshare.service.entities.impl.RentalServiceImp;
+import com.mar.toolshare.service.entities.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -24,16 +23,16 @@ import java.util.LinkedList;
 public class ToolshareApplication {
 
 	@Autowired
-	ItemService itemService;
+	ItemServiceImpl itemService;
 
 	@Autowired
-	RentalService rentalService;
+	RentalServiceImp rentalService;
 
 	@Autowired
-	PastRentalService pastRentalService;
+	PastRentalServiceImpl pastRentalService;
 
 	@Autowired
-	UserService userService;
+	UserServiceImpl userService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ToolshareApplication.class, args);

@@ -6,6 +6,7 @@ import com.mar.toolshare.databases.dao.UserAccountRepository;
 import com.mar.toolshare.model.security.UserData;
 import com.mar.toolshare.model.security.authentication.TsUserDetails;
 import com.mar.toolshare.model.entities.UserAccount;
+import com.mar.toolshare.service.entities.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -20,7 +21,7 @@ import java.io.OutputStream;
 public abstract class BaseController {
 
     @Autowired
-    UserAccountRepository userAccountRepo;
+    UserService userService;
 
     protected boolean addLoggedInUserDataToModel(Model model){
         UserData userData = getLoggedInUserData();
@@ -53,7 +54,7 @@ public abstract class BaseController {
         TsUserDetails loggedInUserDetails = getLoggedInUserDetails();
         if(loggedInUserDetails == null)
             return null;
-        return userAccountRepo.findByUserName(loggedInUserDetails.getUsername()).orElse(null);
+        return userService.findByUserName(loggedInUserDetails.getUsername());
     }
 
     protected UserData getLoggedInUserData(){

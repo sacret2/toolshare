@@ -1,28 +1,17 @@
 package com.mar.toolshare.service.entities;
 
-import com.mar.toolshare.databases.dao.UserAccountRepository;
-
 import com.mar.toolshare.databases.dto.IUserData;
 import com.mar.toolshare.model.entities.UserAccount;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
-@Service
-public class UserService {
-    @Autowired
-    UserAccountRepository userAccountRepo;
+public interface UserService {
+    List<IUserData> findManagers();
 
-    public List<IUserData> findManagers(){
-        return userAccountRepo.findAllUserDataManagers();
-    }
+    void deleteById(long userId);
 
-    public void deleteById(long userId) {
-        userAccountRepo.deleteById(userId);
-    }
+    UserAccount save(UserAccount userAccount);
 
-    public UserAccount save(UserAccount userAccount){
-        return userAccountRepo.save(userAccount);
-    }
+    UserAccount findByUserName(String username);
 }
