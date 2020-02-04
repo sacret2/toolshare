@@ -1,7 +1,7 @@
 package com.mar.toolshare.controller.other;
 
-import com.mar.toolshare.databases.dao.UserAccountRepository;
 import com.mar.toolshare.model.entities.UserAccount;
+import com.mar.toolshare.service.entities.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,7 +22,7 @@ public class SecurityController {
     BCryptPasswordEncoder bCryptEncoder;
 
     @Autowired
-    UserAccountRepository accountRepo;
+    UserService userService;
 
     @GetMapping("/register")
     public String register(Model model){
@@ -34,7 +34,7 @@ public class SecurityController {
     @PostMapping("register/save")
     public String saveUser(Model model, UserAccount user){
         user.setPassword(bCryptEncoder.encode(user.getPassword()));
-        accountRepo.save(user);
+        userService.save(user);
         return "redirect:/";
     }
 
@@ -42,14 +42,14 @@ public class SecurityController {
     public String loginPage(@RequestParam(value = "error", required = false) String error,
                             @RequestParam(value = "logout", required = false) String logout,
                             Model model) {
-        String errorMessge = null;
+        String errorMessage = null;
         if(error != null) {
-            errorMessge = "Username or password incorrect";
+            errorMessage = "Username or password incorrect";
         }
         if(logout != null) {
-            errorMessge = "You are successfully logged out";
+            errorMessage = "You are successfully logged out";
         }
-        model.addAttribute("errorMessge", errorMessge);
+        model.addAttribute("errorMessage", errorMessage);
         return "main/login";
     }
     @GetMapping(value="/logout")

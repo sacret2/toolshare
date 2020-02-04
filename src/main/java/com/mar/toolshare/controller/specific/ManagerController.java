@@ -2,14 +2,14 @@ package com.mar.toolshare.controller.specific;
 
 import com.mar.toolshare.controller.BaseController;
 import com.mar.toolshare.databases.dao.ItemRepository;
-import com.mar.toolshare.databases.dao.PastRentalRepository;
-import com.mar.toolshare.databases.dao.RentalRepository;
 import com.mar.toolshare.databases.dto.IUserData;
 import com.mar.toolshare.model.entities.Item;
 import com.mar.toolshare.model.entities.PastRental;
 import com.mar.toolshare.model.entities.Rental;
 import com.mar.toolshare.service.authentication.TsUserDetailsService;
-import com.mar.toolshare.service.entities.UserService;
+import com.mar.toolshare.service.entities.ItemService;
+import com.mar.toolshare.service.entities.PastRentalService;
+import com.mar.toolshare.service.entities.RentalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,16 +25,17 @@ import java.util.Optional;
 @RequestMapping("/manager")
 public class ManagerController extends BaseController {
     @Autowired
-    ItemRepository itemRepo;
+    ItemService itemService;
+    
+    @Autowired
+    RentalService curRentalsService;
 
     @Autowired
-    RentalRepository curRentalsRepo;
-
-    @Autowired
-    PastRentalRepository pastRentalsRepo;
+    PastRentalService pastRentalsService;
 
     @Autowired
     TsUserDetailsService userDetailsService;
+
     // ===== View
     @GetMapping("")
     public String currentRentsList(Model model){
@@ -50,13 +51,13 @@ public class ManagerController extends BaseController {
         if(!loggedIn)
             return "redirect:/login";
 
-        Item item = itemRepo.findById(itemId).get();
+        Item item = itemService.findById(itemId);
         model.addAttribute("item", item);
 
-        Rental currentRental = curRentalsRepo.findByItem_ItemId(itemId);
+        Rental currentRental = curRentalsService.findByItem_ItemId(itemId);
         model.addAttribute("currentRental", currentRental);
 
-        List<PastRental> pastRentals = pastRentalsRepo.findAllByItem(itemId);
+        List<PastRental> pastRentals = pastRentalsService.findAllByItem(itemId);
         model.addAttribute("rentals", pastRentals);
 
         return "manager/item";
@@ -71,10 +72,10 @@ public class ManagerController extends BaseController {
 
         model.addAttribute("user", userData);
 
-        List<Rental> rentals = curRentalsRepo.findByUser_UserId(userId);
+        List<Rental> rentals = curRentalsService.findByUser_UserId(userId);
         model.addAttribute("rentals", rentals);
 
-        List<PastRental> pastRentals = pastRentalsRepo.findByUser_UserId(userId);
+        List<PastRental> pastRentals = pastRentalsService.findByUser_UserId(userId);
         model.addAttribute("pastRentals", pastRentals);
 
         return "manager/user";
@@ -85,7 +86,7 @@ public class ManagerController extends BaseController {
         if(!loggedIn)
             return "redirect:/login";
 
-        Iterable<Item> items = itemRepo.findAll();
+        Iterable<Item> items = itemService.findAll();
         model.addAttribute("items", items);
         return "manager/items";
     }
@@ -107,13 +108,13 @@ public class ManagerController extends BaseController {
     // ===== CRUD
     @PostMapping(value = "/saveItem")
     public String saveItem(Item item) {
-        itemRepo.save(item);
+        itemService.save(item);
         return "redirect:/manager/items";
     }
 
     @GetMapping("/delete")
     public String removeItem(@RequestParam("id") Long id){
-        itemRepo.deleteById(id);
+        itemService.deleteById(id);
         return "redirect:/manager/items";
     }
     // ===== CRUD end

@@ -17,7 +17,9 @@
         </thead>
         <tbody>
         <tr th:each="item : ${items}" >
-            <td th:text="${item.getItemId()}"/>
+            <td>
+                <a th:href="@{/manager/item(id=${item.getItemId()})}" th:text="${item.getItemId()}"/>
+            </td>
             <td th:text="${item.getName()}"/>
             <td th:text="${item.getDescription()}"/>
             <td style="text-align: center;">
