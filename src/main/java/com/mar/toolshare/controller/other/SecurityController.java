@@ -9,12 +9,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 @Controller
 public class SecurityController {
@@ -32,8 +34,10 @@ public class SecurityController {
     }
 
     @PostMapping("register/save")
-    public String saveUser(Model model, UserAccount user){
+    public String saveUser(Model model, @Valid UserAccount user, BindingResult binding){
         user.setPassword(bCryptEncoder.encode(user.getPassword()));
+        if(binding.hasErrors())
+            return "redirect:/register";
         userService.save(user);
         return "redirect:/";
     }

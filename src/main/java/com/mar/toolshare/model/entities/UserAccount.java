@@ -1,11 +1,15 @@
 package com.mar.toolshare.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mar.toolshare.auxiliary.validation.TsEmail;
 import com.mar.toolshare.model.entities.PastRental;
 import com.mar.toolshare.model.entities.Rental;
 import org.apache.tomcat.jni.Address;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -17,20 +21,35 @@ public class UserAccount {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_account_seq")
     private long userId;
 
-    @Column(name = "username")
+    @Column(name = "username", unique=true)
+    @NotNull(message = "Username taken or empty")
+    @Size(min=1, max=50)
     private String userName;
+    @NotNull
+    @Size(min=1, max=50)
     private String firstName;
+    @NotNull
+    @Size(min=1, max=50)
     private String lastName;
+    @NotNull
+    @Size(min=0, max=70)
     private String addressLine1;
+    @NotNull
+    @Size(min=0, max=70)
     private String addressLine2;
+    @NotNull
+    @Size(min=0, max=30)
     private String zipCode;
 
 
-
+    @NotNull
+    @Email(message = "Email is already present or invalid")
+    @Column(unique = true)
     private String email;
+    @NotNull
     private String password;
     private boolean enabled = true;
-    private String roles;
+    private String roles="ROLE_USER";
 
     @OneToMany (mappedBy = "userAccount")
     @JsonIgnore

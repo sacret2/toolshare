@@ -73,7 +73,7 @@ public class ToolshareApplication {
 			itemService.saveAll(Arrays.asList(i1,i2,i3,i4,i5));
 
 			String pass = new BCryptPasswordEncoder().encode("a");
-			UserAccount a = new UserAccount("a", "Admin", " ", "","" ,"","a", pass, true, "ROLE_ADMIN", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			UserAccount a = new UserAccount("a", "Admin", " ", "","" ,"","admin@gmail.com", pass, true, "ROLE_ADMIN", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userService.save(a);
 
 			String passb = new BCryptPasswordEncoder().encode("b");
@@ -85,7 +85,7 @@ public class ToolshareApplication {
 			userService.save(bb);
 
 			String passc = new BCryptPasswordEncoder().encode("c");
-			UserAccount c = new UserAccount("userc", "Kenneth", "Carolina", "579  Hoffman Avenue", "New York", "10016","KennethCCarolina@dayrep.com ", passc, true, "ROLE_USER", new LinkedList<Rental>(),new LinkedList<PastRental>());
+			UserAccount c = new UserAccount("userc", "Kenneth", "Carolina", "579  Hoffman Avenue", "New York", "10016","KennethCCarolina@dayrep.com", passc, true, "ROLE_USER", new LinkedList<Rental>(),new LinkedList<PastRental>());
 			userService.save(c);
 
 			Rental r1 = new Rental(c,i1, LocalDateTime.now());
